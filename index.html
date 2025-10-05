@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather Buddy • Will It Rain on My Parade?</title>
+  <meta name="description" content="Check the weather risk for your events in seconds." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Scenic gradient + subtle shapes -->
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="bg-gradient"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <!-- Decorative SVG mountains -->
+    <svg class="bg-mountains" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,256L60,234.7C120,213,240,171,360,176C480,181,600,235,720,256C840,277,960,267,1080,245.3C1200,224,1320,192,1380,176L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <main class="container">
+    <header class="app-header">
+      <div class="brand">
+        <img src="assets/logo.png" alt="" class="logo" onerror="this.style.display='none'">
+        <h1>Weather Buddy</h1>
+      </div>
+      <p class="tagline">Will It Rain on My Parade? <span class="sparkle" aria-hidden="true">✨</span></p>
+    </header>
+
+    <section class="card glass hero">
+      <h2>Check your event’s weather risk</h2>
+      <p class="muted">Enter a location and time—get instant risk labels for <strong>Heat</strong>, <strong>Cold</strong>, <strong>Wind</strong>, <strong>Rain</strong>, and overall <strong>Comfort</strong>.</p>
+
+      <form id="query-form" class="form-grid" autocomplete="off">
+        <div class="field">
+          <label for="location">Location</label>
+          <input id="location" name="location" type="text" placeholder="e.g., Coimbatore, TN" required />
+        </div>
+
+        <div class="field">
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" required />
+        </div>
+
+        <div class="field">
+          <label for="time">Time</label>
+          <input id="time" name="time" type="time" required />
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary" id="checkBtn">Check Weather</button>
+          <button type="button" class="btn ghost" id="clearBtn" title="Reset all fields">Clear</button>
+        </div>
+      </form>
+
+      <div class="helper">
+        <label class="toggle">
+          <input type="checkbox" id="mockToggle" />
+          <span>Use mock data (no backend)</span>
+        </label>
+        <span class="note">Backend-ready — plug your URL in <code>js/app.js</code>.</span>
+      </div>
+    </section>
+
+    <!-- ChatBuddy Section -->
+<section id="chat-buddy">
+  <h2>🌦️ Talk to ChatBuddy</h2>
+  <div class="chat-box" id="chat-box">
+    <div class="message buddy">Hey sunshine ☀️! Want a weather tip for today?</div>
+  </div>
+  <button id="talk-btn">🎙️ Talk to Buddy</button>
+</section>
+
+
+    <section class="results">
+      <div class="grid" id="resultGrid" hidden>
+        <!-- Summary -->
+        <article class="card glass">
+          <header class="card-head">
+            <h3>Summary</h3>
+            <div class="badge" id="summaryBadge">—</div>
+          </header>
+          <div id="summaryText" class="summary">Run a check to see your event outlook.</div>
+          <div class="chips" id="chips"></div>
+        </article>
+
+        <!-- Metrics -->
+        <article class="card glass">
+          <header class="card-head">
+            <h3>Details</h3>
+          </header>
+          <div class="details" id="details">
+            <!-- dynamically filled -->
+          </div>
+        </article>
+
+        <!-- Forecast timeline -->
+        <article class="card glass">
+          <header class="card-head">
+            <h3>Next Hours</h3>
+          </header>
+          <div id="timeline" class="timeline">
+            <!-- dynamically filled -->
+          </div>
+        </article>
+      </div>
+
+      <div id="emptyState" class="empty">
+        <div class="emoji" aria-hidden="true">🌦️</div>
+        <p>Results will appear here after you check the weather.</p>
+      </div>
+
+      <div id="loader" class="loader" hidden>
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Crunching the clouds…</p>
+      </div>
+
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    </section>
+
+    <footer class="footer">
+      <p>Built for <strong>NASA Space Apps • Team Onyxlogic</strong> · <span id="year"></span></p>
+    </footer>
+  </main>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
